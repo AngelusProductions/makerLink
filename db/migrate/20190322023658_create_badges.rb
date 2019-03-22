@@ -3,8 +3,6 @@ class CreateBadges < ActiveRecord::Migration[5.2]
     create_table :badges do |t|
       t.string :name, null: false
       t.integer :level
-      
-      t.timestamps null: false
     end
   end
 end
