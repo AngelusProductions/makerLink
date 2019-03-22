@@ -10,30 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_22_023921) do
+ActiveRecord::Schema.define(version: 2019_03_22_032055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accessibilities", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "administrators", force: :cascade do |t|
+    t.bigint "maker_id", null: false
+    t.bigint "makerspace_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_administrators_on_maker_id"
+    t.index ["makerspace_id"], name: "index_administrators_on_makerspace_id"
   end
 
   create_table "age_groups", force: :cascade do |t|
     t.string "name", null: false
     t.integer "minimum_age", null: false
     t.integer "maximum_age", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "badges", force: :cascade do |t|
     t.string "name", null: false
     t.integer "level"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -67,9 +70,11 @@ ActiveRecord::Schema.define(version: 2019_03_22_023921) do
     t.string "name", null: false
     t.bigint "maker_id"
     t.bigint "project_id"
+    t.bigint "makerspace_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["maker_id"], name: "index_features_on_maker_id"
+    t.index ["makerspace_id"], name: "index_features_on_makerspace_id"
     t.index ["project_id"], name: "index_features_on_project_id"
   end
 
@@ -99,7 +104,10 @@ ActiveRecord::Schema.define(version: 2019_03_22_023921) do
 
   create_table "makerspaces", force: :cascade do |t|
     t.string "name", null: false
-    t.string "address", null: false
+    t.string "street", null: false
+    t.string "city", null: false
+    t.string "country", null: false
+    t.string "zip_code", null: false
     t.string "website", null: false
     t.string "email", null: false
     t.string "mission"
@@ -181,8 +189,6 @@ ActiveRecord::Schema.define(version: 2019_03_22_023921) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "talents", force: :cascade do |t|

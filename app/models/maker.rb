@@ -12,6 +12,8 @@ class Maker < ApplicationRecord
   has_many :memberships
   has_many :matches
   has_many :talents
+  has_many :features
+  has_many :badges
   has_many :tools
   has_many :chats
   has_many :messages
