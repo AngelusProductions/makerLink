@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_20_040201) do
+ActiveRecord::Schema.define(version: 2019_03_22_023921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 2019_03_20_040201) do
     t.string "name", null: false
     t.integer "minimum_age", null: false
     t.integer "maximum_age", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,9 +63,26 @@ ActiveRecord::Schema.define(version: 2019_03_20_040201) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
+  create_table "features", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "maker_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_features_on_maker_id"
+    t.index ["project_id"], name: "index_features_on_project_id"
+  end
+
   create_table "feeds", force: :cascade do |t|
     t.bigint "maker_id", null: false
     t.index ["maker_id"], name: "index_feeds_on_maker_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "following_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "makers", force: :cascade do |t|
@@ -84,8 +108,8 @@ ActiveRecord::Schema.define(version: 2019_03_20_040201) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer "maker_id"
-    t.integer "match_id"
+    t.integer "maker_id", null: false
+    t.integer "match_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
