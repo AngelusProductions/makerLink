@@ -125,7 +125,8 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
   create_table "meetings", force: :cascade do |t|
     t.string "name", null: false
     t.date "date", null: false
-    t.time "time", null: false
+    t.time "start_time", null: false
+    t.time "end_time", null: false
     t.string "street"
     t.string "city"
     t.string "country"

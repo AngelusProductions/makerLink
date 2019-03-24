@@ -1,11 +1,16 @@
+require 'validates_timeliness'
+
 class Meeting < ApplicationRecord
   validates :name, presence: true
-  validates :match_id, presence: true
   validates :date, presence: true
-  validates :time, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :description, presence: true
 
+  validates_length_of :desceiption, :maximum => 1000
   validates_length_of :zip_code, :is => 5
-
+  validates_time :start_time, :between => ['7:00am', '12:00am']
+  validates_time :end_time, :between => ['7:00am', '12:00am']
   validate :date_cannot_be_in_the_past
 
   def date_cannot_be_in_the_past
@@ -14,7 +19,7 @@ class Meeting < ApplicationRecord
     end
   end
 
-  belongs_to :maker
+  belongs_to :maker, presence: true
   belongs_to :makerspace, optional: true
 
   has_many :makers, optional: true
