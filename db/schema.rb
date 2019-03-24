@@ -127,10 +127,10 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
     t.date "date", null: false
     t.time "start_time", null: false
     t.time "end_time", null: false
-    t.string "street"
-    t.string "city"
-    t.string "country"
-    t.string "zip_code"
+    t.string "street", null: false
+    t.string "city", null: false
+    t.string "country", null: false
+    t.string "zip_code", null: false
     t.bigint "makerspace_id"
     t.bigint "maker_id", null: false
     t.datetime "created_at", null: false

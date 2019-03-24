@@ -5,9 +5,13 @@ class Meeting < ApplicationRecord
   validates :date, presence: true
   validates :start_time, presence: true
   validates :end_time, presence: true
+  validates :street, presence: true
+  validates :city, presence: true
+  validates :country, presence: true
+  validates :zip_code, presence: true
   validates :description, presence: true
 
-  validates_length_of :desceiption, :maximum => 1000
+  validates_length_of :description, :maximum => 1000
   validates_length_of :zip_code, :is => 5
   validates_time :start_time, :between => ['7:00am', '12:00am']
   validates_time :end_time, :between => ['7:00am', '12:00am']
