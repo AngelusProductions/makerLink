@@ -4,9 +4,13 @@ class CreateMeetings < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.date :date, null: false
       t.time :time, null: false
+      t.string :street
+      t.string :city
+      t.string :country
+      t.string :zip_code
 
-      t.belongs_to :makerspace, null: false
-      t.belongs_to :maker
+      t.belongs_to :makerspace
+      t.belongs_to :maker, null: false
 
       t.timestamps null: false
     end

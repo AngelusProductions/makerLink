@@ -126,8 +126,12 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
     t.string "name", null: false
     t.date "date", null: false
     t.time "time", null: false
-    t.bigint "makerspace_id", null: false
-    t.bigint "maker_id"
+    t.string "street"
+    t.string "city"
+    t.string "country"
+    t.string "zip_code"
+    t.bigint "makerspace_id"
+    t.bigint "maker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["maker_id"], name: "index_meetings_on_maker_id"
