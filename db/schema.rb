@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_22_032055) do
+ActiveRecord::Schema.define(version: 2019_03_24_211249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accessibilities", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "administrators", force: :cascade do |t|
@@ -32,6 +34,8 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
     t.string "name", null: false
     t.integer "minimum_age", null: false
     t.integer "maximum_age", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "badges", force: :cascade do |t|
@@ -57,6 +61,7 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.string "name"
     t.string "body", null: false
     t.bigint "post_id", null: false
     t.bigint "maker_id", null: false
@@ -90,14 +95,29 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invites", force: :cascade do |t|
+    t.string "message", limit: 1000, null: false
+    t.boolean "accepted", default: false, null: false
+    t.bigint "chat_id", null: false
+    t.bigint "inviter_id", null: false
+    t.bigint "invitee_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_invites_on_chat_id"
+    t.index ["invitee_id"], name: "index_invites_on_invitee_id"
+    t.index ["inviter_id"], name: "index_invites_on_inviter_id"
+  end
+
   create_table "makers", force: :cascade do |t|
     t.string "username", null: false
     t.string "first_name", null: false
     t.string "last_name"
+    t.string "gender"
     t.integer "age", null: false
     t.string "email", null: false
     t.integer "phone_number"
     t.string "bio"
+    t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -152,12 +172,15 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
 
   create_table "messages", force: :cascade do |t|
     t.string "body", null: false
-    t.bigint "maker_id", null: false
-    t.bigint "chat_id", null: false
+    t.boolean "direct", null: false
+    t.bigint "sender_id", null: false
+    t.bigint "recipient_id"
+    t.bigint "chat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_messages_on_chat_id"
-    t.index ["maker_id"], name: "index_messages_on_maker_id"
+    t.index ["recipient_id"], name: "index_messages_on_recipient_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "offerings", force: :cascade do |t|
@@ -170,7 +193,8 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
     t.string "name", null: false
     t.string "type", null: false
     t.integer "amount", null: false
-    t.string "frequency", null: false
+    t.string "frequency"
+    t.string "description"
     t.bigint "makerspace_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -178,7 +202,7 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title", null: false
+    t.string "name", limit: 100
     t.string "body", null: false
     t.bigint "feed_id", null: false
     t.datetime "created_at", null: false
@@ -194,20 +218,14 @@ ActiveRecord::Schema.define(version: 2019_03_22_032055) do
 
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
-  end
-
-  create_table "talents", force: :cascade do |t|
-    t.bigint "maker_id", null: false
-    t.bigint "skill_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["maker_id"], name: "index_talents_on_maker_id"
-    t.index ["skill_id"], name: "index_talents_on_skill_id"
   end
 
   create_table "tools", force: :cascade do |t|
     t.string "name", null: false
     t.integer "danger", null: false
+    t.string "city", null: false
     t.string "description"
     t.bigint "maker_id", null: false
     t.datetime "created_at", null: false

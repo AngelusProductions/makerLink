@@ -3,6 +3,7 @@ class CreateTools < ActiveRecord::Migration[5.2]
     create_table :tools do |t|
       t.string :name, null: false
       t.integer :danger, null: false
+      t.string :city, null: false
       t.string :description
 
       t.belongs_to :maker, null: false
