@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :name, limit: 100
       t.string :body, null: false
 
-      t.belongs_to :feed, null: false
+      t.belongs_to :maker, null: false
 
       t.timestamps null: false
     end

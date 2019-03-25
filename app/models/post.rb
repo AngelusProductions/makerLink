@@ -5,9 +5,9 @@ class Post < ApplicationRecord
 
   validates :name, optional: true, length: { maximum: 100 }
   validates :body, presence: true, length: { maximum: 1000 }
-  validates :feed_id, presence: true
+  validates :maker_id, presence: true
 
-  belongs_to :feed
+  belongs_to :maker
 
   has_many :comments
 

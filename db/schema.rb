@@ -83,11 +83,6 @@ ActiveRecord::Schema.define(version: 2019_03_24_211249) do
     t.index ["project_id"], name: "index_features_on_project_id"
   end
 
-  create_table "feeds", force: :cascade do |t|
-    t.bigint "maker_id", null: false
-    t.index ["maker_id"], name: "index_feeds_on_maker_id"
-  end
-
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "following_id", null: false
@@ -204,10 +199,10 @@ ActiveRecord::Schema.define(version: 2019_03_24_211249) do
   create_table "posts", force: :cascade do |t|
     t.string "name", limit: 100
     t.string "body", null: false
-    t.bigint "feed_id", null: false
+    t.bigint "maker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["feed_id"], name: "index_posts_on_feed_id"
+    t.index ["maker_id"], name: "index_posts_on_maker_id"
   end
 
   create_table "projects", force: :cascade do |t|
