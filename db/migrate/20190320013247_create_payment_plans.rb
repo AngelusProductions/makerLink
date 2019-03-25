@@ -4,7 +4,8 @@ class CreatePaymentPlans < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :type, null: false
       t.integer :amount, null: false
-      t.string :frequency, null: false
+      t.string :frequency
+      t.string :description
 
       t.belongs_to :makerspace, null: false
 
