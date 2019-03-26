@@ -14,9 +14,10 @@ class Maker < ApplicationRecord
 
   has_one :feed
 
+  belongs_to :administrator, optional: true
+
   has_many :memberships
   has_many :matches
-  has_many :skills
   has_many :features
   has_many :badges
   has_many :tools
@@ -25,4 +26,8 @@ class Maker < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :follows
+  has_many :teams
+  has_many :projects
+  has_many :talents
+  has_many :skills, :through => :talents
 end
