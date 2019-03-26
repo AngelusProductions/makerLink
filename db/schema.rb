@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_24_211249) do
+ActiveRecord::Schema.define(version: 2019_03_26_003950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,13 @@ ActiveRecord::Schema.define(version: 2019_03_24_211249) do
 
   create_table "administrators", force: :cascade do |t|
     t.bigint "maker_id", null: false
-    t.bigint "makerspace_id", null: false
+    t.bigint "makerspace_id"
+    t.bigint "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["maker_id"], name: "index_administrators_on_maker_id"
     t.index ["makerspace_id"], name: "index_administrators_on_makerspace_id"
+    t.index ["project_id"], name: "index_administrators_on_project_id"
   end
 
   create_table "age_groups", force: :cascade do |t|
@@ -40,7 +42,11 @@ ActiveRecord::Schema.define(version: 2019_03_24_211249) do
 
   create_table "badges", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "level"
+    t.string "description", null: false
+    t.bigint "maker_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_badges_on_maker_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -73,13 +79,12 @@ ActiveRecord::Schema.define(version: 2019_03_24_211249) do
 
   create_table "features", force: :cascade do |t|
     t.string "name", null: false
+    t.string "description", null: false
     t.bigint "maker_id"
     t.bigint "project_id"
-    t.bigint "makerspace_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["maker_id"], name: "index_features_on_maker_id"
-    t.index ["makerspace_id"], name: "index_features_on_makerspace_id"
     t.index ["project_id"], name: "index_features_on_project_id"
   end
 
@@ -101,6 +106,15 @@ ActiveRecord::Schema.define(version: 2019_03_24_211249) do
     t.index ["chat_id"], name: "index_invites_on_chat_id"
     t.index ["invitee_id"], name: "index_invites_on_invitee_id"
     t.index ["inviter_id"], name: "index_invites_on_inviter_id"
+  end
+
+  create_table "leaders", force: :cascade do |t|
+    t.bigint "maker_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_leaders_on_maker_id"
+    t.index ["project_id"], name: "index_leaders_on_project_id"
   end
 
   create_table "makers", force: :cascade do |t|
@@ -206,15 +220,43 @@ ActiveRecord::Schema.define(version: 2019_03_24_211249) do
   end
 
   create_table "projects", force: :cascade do |t|
+    t.string "name", null: false
     t.string "description", null: false
+    t.string "street"
+    t.string "city", null: false
+    t.string "country"
+    t.string "zip_code", null: false
+    t.string "website"
+    t.bigint "administrator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_projects_on_administrator_id"
   end
 
   create_table "skills", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "talents", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "level", default: 1
+    t.bigint "maker_id", null: false
+    t.bigint "skill_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_talents_on_maker_id"
+    t.index ["skill_id"], name: "index_talents_on_skill_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "administrator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["administrator_id"], name: "index_teams_on_administrator_id"
+    t.index ["project_id"], name: "index_teams_on_project_id"
   end
 
   create_table "tools", force: :cascade do |t|
@@ -238,6 +280,21 @@ ActiveRecord::Schema.define(version: 2019_03_24_211249) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wanted_ads", force: :cascade do |t|
+    t.string "description", null: false
+    t.string "street", null: false
+    t.string "city", null: false
+    t.string "country", null: false
+    t.string "zip_code", null: false
+    t.string "website"
+    t.bigint "maker_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_wanted_ads_on_maker_id"
+    t.index ["project_id"], name: "index_wanted_ads_on_project_id"
   end
 
 end
