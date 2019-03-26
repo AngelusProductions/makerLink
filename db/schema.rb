@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2019_03_26_003950) do
     t.string "gender"
     t.integer "age", null: false
     t.string "email", null: false
-    t.integer "phone_number"
+    t.string "phone_number"
     t.string "bio"
     t.string "city"
     t.datetime "created_at", null: false
