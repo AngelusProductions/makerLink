@@ -7,7 +7,7 @@ class CreateMakers < ActiveRecord::Migration[5.2]
       t.string :gender
       t.integer :age, null: false
       t.string :email, null: false
-      t.integer :phone_number
+      t.string :phone_number
       t.string :bio
       t.string :city
 

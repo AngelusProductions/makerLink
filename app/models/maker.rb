@@ -9,14 +9,13 @@ class Maker < ApplicationRecord
   validates :age, presence: true, numericality: { only_integer: true }
   validates_inclusion_of :age, :in => 0..100
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :phone_number, numericality: { only_integer: true }
+  validates :phone_number, presence: true
   validates_length_of :bio, :maximum => 1000
 
   has_one :feed
 
   belongs_to :administrator, optional: true
 
-  has_many :memberships
   has_many :matches
   has_many :features
   has_many :badges
@@ -29,5 +28,8 @@ class Maker < ApplicationRecord
   has_many :teams
   has_many :projects
   has_many :talents
+  has_many :meetings
   has_many :skills, :through => :talents
+  has_many :memberships
+  has_many :makers, :through => :memberships
 end
