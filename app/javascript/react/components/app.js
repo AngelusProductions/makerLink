@@ -1,7 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Route, IndexRoute, Router } from 'react-router';
+import IndexPageContainer from '../containers/IndexPageContainer';
 
-export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+const App = (props) => {
+  return (
+    <div>
+      <Router>
+        <Route path='/makers' component={IndexPageContainer} />
+      </Router>
+    </div>
+  );
 }
 
-export default App
+export default App;
