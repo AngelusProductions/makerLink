@@ -8,5 +8,5 @@ class Tool < ApplicationRecord
 
   belongs_to :maker
 
-  has_one :schedule
+  has_many :makers
 end
