@@ -7,7 +7,7 @@ class CreateTalents < ActiveRecord::Migration[5.2]
       t.belongs_to :maker, null: false
       t.belongs_to :skill, null: false
 
-      t.timestamps null: false 
+      t.timestamps null: false
     end
   end
 end

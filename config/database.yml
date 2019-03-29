@@ -82,4 +82,4 @@ production:
   <<: *default
   database: MakerLink_production
   username: MakerLink
-  password: <%= ENV['MAKERLINK_DATABASE_PASSWORD'] %>
+  password: <%= ENV['MakerLink_DATABASE_PASSWORD'] %>
