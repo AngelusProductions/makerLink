@@ -5,6 +5,7 @@ class Post < ApplicationRecord
 
   validates :name, optional: true, length: { maximum: 100 }
   validates :body, presence: true, length: { maximum: 1000 }
+  validates :link, optional: true, format: { with: URI::regexp }
   validates :maker_id, presence: true
 
   belongs_to :maker
