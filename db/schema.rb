@@ -23,13 +23,11 @@ ActiveRecord::Schema.define(version: 2019_03_29_033103) do
 
   create_table "administrators", force: :cascade do |t|
     t.bigint "maker_id", null: false
-    t.bigint "makerspace_id"
-    t.bigint "project_id"
+    t.bigint "makerspace_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["maker_id"], name: "index_administrators_on_maker_id"
     t.index ["makerspace_id"], name: "index_administrators_on_makerspace_id"
-    t.index ["project_id"], name: "index_administrators_on_project_id"
   end
 
   create_table "age_groups", force: :cascade do |t|
@@ -50,8 +48,8 @@ ActiveRecord::Schema.define(version: 2019_03_29_033103) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.datetime "start_time", null: false
-    t.datetime "end_date", null: false
+    t.datetime "start_datetime", null: false
+    t.datetime "end_datetime", null: false
     t.bigint "tool_id", null: false
     t.bigint "maker_id", null: false
     t.datetime "created_at", null: false
@@ -67,7 +65,6 @@ ActiveRecord::Schema.define(version: 2019_03_29_033103) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "name"
     t.string "body", null: false
     t.bigint "post_id", null: false
     t.bigint "maker_id", null: false
@@ -200,7 +197,6 @@ ActiveRecord::Schema.define(version: 2019_03_29_033103) do
 
   create_table "payment_plans", force: :cascade do |t|
     t.string "name", null: false
-    t.string "type", null: false
     t.integer "amount", null: false
     t.string "frequency"
     t.string "description"
@@ -213,6 +209,7 @@ ActiveRecord::Schema.define(version: 2019_03_29_033103) do
   create_table "posts", force: :cascade do |t|
     t.string "name", limit: 100
     t.string "body", null: false
+    t.string "link"
     t.bigint "maker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

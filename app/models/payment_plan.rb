@@ -1,6 +1,5 @@
 class Payment_Plan < ApplicationRecord
   validates :name, presence: true
-  validates :type, presence: true, length: { maximum: 100 }
   validates :description, optional: true, length: { maximum: 1000 }
   validates :makerspace_id, presence: true
 

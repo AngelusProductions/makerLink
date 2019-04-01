@@ -6,7 +6,7 @@ class Makerspace < ApplicationRecord
   validates :website, url: true
   validates :zip_code, presence: true, numericality: { only_integer: true }
 
-  # validates_length_of :zip_code, :is => 5
+  validates_length_of :zip_code, :is => 5
   validates_length_of :mission, :maximum => 1000
 
   has_many :payment_plans
