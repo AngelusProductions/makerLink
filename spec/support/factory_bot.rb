@@ -120,7 +120,78 @@ FactoryBot.define do
   factory :membership do
     maker
     makerspaces
-    
   end
 
+  factory :message do
+    body { 'Hey you forgot your keys!' }
+    direct { true }
+    sender
+    recipient
+    chat
+  end
+
+  factory :offering do
+    name { 'Welding Station' }
+  end
+
+  factory :payment_plan do
+    name { 'Full Membership' }
+    amount { 500 }
+    frequency { "monthly" }
+    description { '24 hr access and personal workspace' }
+    makerspace
+  end
+
+  factory :post do
+    name { 'Swarmbots' }
+    body { 'Hacking a toy is a fun way to see how real-world electronics are designed and built.' }
+    link { 'https://makezine.com/projects/diy-swarmbots/' }
+    maker
+  end
+
+  factory :project do
+    name { 'Robotic Bananna Peeler' }
+    description { 'Never peel a Bananna by hand again!' }
+    street { "123 Main St" }
+    city { "Boston" }
+    country { "USA" }
+    zip_code { "12309" }
+    website { "https://Banannabot.com" }
+    administrator
+  end
+
+  factory :skill do
+    name { 'Welding' }
+  end
+
+  factory :talent do
+    name { 'Mig Welding' }
+    name { 2 }
+    maker
+    skill
+  end
+
+  factory :team do
+  project
+  administrator
+  end
+
+  factory :tool do
+    name { 'Drill Press' }
+    danger { 5 }
+    city { "Boston" }
+    description { 'Bench mounted Drill Press, 18 Inch drop' }
+    maker
+  end
+
+  factory :wanted_ad do
+    description { '24 hr access and personal workspace' }
+    street { '123 Main St' }
+    city { 'Boston' }
+    country { 'USA' }
+    zip_code { '12309' }
+    website { 'https://Banannabot.com' }
+    maker
+    project
+  end
 end
