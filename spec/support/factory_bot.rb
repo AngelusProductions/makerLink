@@ -101,9 +101,26 @@ FactoryBot.define do
   end
 
   factory :match do
-    name { 'Master Machinist' }
-    description { 'Logged 100hrs on CNC' }
     maker
+  end
+
+  factory :meeting do
+    name { 'Onboarding meetup' }
+    date { 2012-08-12 }
+    start_time { T23:59:33Z }
+    end_time { T23:59:34Z }
+    street { '123 Main St' }
+    city { 'Boston' }
+    country { 'USA' }
+    zip_code { '12309' }
+    makerspace
+    maker
+  end
+
+  factory :membership do
+    maker
+    makerspaces
+    
   end
 
 end
