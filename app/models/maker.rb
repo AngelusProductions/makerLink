@@ -9,6 +9,8 @@ class Maker < ApplicationRecord
   validates :phone_number, presence: true
   validates_length_of :bio, :maximum => 1000
 
+  mount_uploader :profile_pic, ProfilePicUploader
+
   has_one :feed
 
   belongs_to :administrator, optional: true

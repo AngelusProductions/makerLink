@@ -1,3 +1,4 @@
+require 'pry'
 
 username_array = ["regularwretch", "perllymington", "virtuedictate", "opiumwrithing", "carejimbo", "particulararcturus", "calmpinkie", "boguscross", "knackertease", "toastedtiger", "slackvintage", "shaylaslice", "degoogle", "talcumskim", "coralchocolaty", "taxjacket", "pacemaker", "flurgersremain", "plantdarcy", "snazzyfading", "taboopolish", "chillyextraneous", "sandpapercolumba", "eiuationwagic", "bushgravy", "permitbugger", "carefullyscorpion", "hygieaklutz", "millvictoria", "meatgraph", "smuefebruary", "condimentfarnack", "picklesunzip", "pointeddogwatch", "candycothi", "charmmarathon", "potionsseafowl", "moistibexe", "umamidove", "tillitesnecklifter", "sheepishfusion", "karatesetting", "abdomenunshaved", "heartkisser", "pueblodiver", "priscillabackstay", "neurongenetic", "featherdanting", "zoologistdiner", "flyingbolt", "variablyjudicious", "furbelowgaussian", "fizzyoutthink", "signaturesnake", "kitepancetta", "pyromaniadruie", "scabbedoval", "boneheadclubhouse", "zenyattapretzel", "pizzawatt", "finersmartness", "lufftwinning", "aidspeppermint", "shinphoney", "sesamefootrest", "iiangextrovert", "grodconseiuence", "clastfleece", "shinglesexpert", "phalanxnoddlers", "spermarmband", "mottedeinsteinium", "ministerchive", "fontcumbrian", "overratelepe", "hourglassonerous", "waffleniskey", "palmhock", "locatemunching", "beafcrier", "snowshoeorange", "clashunveiled", "beautyhumiliated", "sprintrae", "aladdindingdong", "samecaroy", "unlovelyindiana", "elliegaliath", "sifterenhance", "gatewaysolstice", "bellingphrase", "bazaartrim", "uncoveredturkey", "wastefullandmine", "reampolonium", "rebelgrievous", "videostrike", "angelface", "gigahertztesticles", "woofdoctor"]
 
@@ -65,22 +66,5 @@ end
 j = 1
 while j <= 100 do
   profile_pic_array.push("https://s3.amazonaws.com/makerlink-production/" + j.to_s + ".jpg")
-  j += 1
 end
-
-k = 0
-while k < 100 do
-  Maker.create!({
-    id: k + 1,
-    username: username_array[k],
-    first_name: first_name_array[k],
-    last_name: last_name_array[k],
-    age: age_array[k],
-    gender: gender_array[k],
-    email: email_array[k],
-    phone_number: phone_num_array[k],
-    city: city_array[k],
-    bio: bio_array[k]
-  })
-  k += 1
-end
+binding.pry
