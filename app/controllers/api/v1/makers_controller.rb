@@ -8,4 +8,5 @@ class Api::V1::MakersController < ApplicationController
   def show
     render json: Maker.find(params[:id]), adapter: :json
   end
+
 end
