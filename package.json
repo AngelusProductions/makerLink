@@ -6,8 +6,9 @@
     "babel-preset-react": "~6.24.1",
     "history": "^4.9.0",
     "prop-types": "~15.6.0",
-    "react": "~15.4.2",
-    "react-dom": "~15.4.2",
+    "react": "~16.8.0",
+    "react-dom": "~16.8.6",
+    "react-photo-gallery": "^7.0.2",
     "react-router": "^5.0.0",
     "redbox-react": "1.6.0"
   },
