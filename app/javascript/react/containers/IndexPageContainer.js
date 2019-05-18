@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Gallery from 'react-photo-gallery'
 
 class IndexPageContainer extends Component {
   constructor(props) {
@@ -11,18 +12,30 @@ class IndexPageContainer extends Component {
   componentDidMount () {
     fetch(`/api/v1/makers`)
       .then(response => response.json())
-      .then(body => { this.setState({ makers: body })})
+      .then(data => { this.setState({ makers: data })})
   }
 
   render() {
-    let pic = ""
+    let photos = []
     if (this.state.makers.length > 0) {
-      const randomNumber = Math.floor(Math.random() * 100)
-      pic = <img src={this.state.makers[randomNumber].profile_pic.url} alt="profilePic" className="profile-pic"/>
+      photos = this.state.makers.map( maker => {
+        return (
+          {
+            src: `${maker.profile_pic.url}`,
+            width: 1,
+            height: 1,
+            className: "gallery-image"
+          }
+        )
+      })
     }
     return (
-	     <div>
-\          {pic}
+	     <div id="index-container">
+          <img id="makersLinking" src="https://s3.amazonaws.com/makerlink-production/makersLinking.png" alt="makersLinking" />
+          <div id="makerlink-title">MakerLink</div>
+          <div id="photo-gallery">
+            <Gallery photos={photos} />
+          </div>
        </div>
     )
   }

@@ -1,0 +1,59 @@
+#makersLinking {
+  float: right;
+  width: 4rem;
+  height: auto;
+  animation: ensmallABit 0.3s;
+  &:hover {
+    animation: enlargeABit 0.3s;
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes enlargeABit {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes ensmallABit {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+#makerlink-title {
+  font-family: 'Quicksand', sans-serif;
+  color: white;
+  background-color: #ff0d7b;
+  padding: 1rem;
+  font-size: 3rem;
+  border: solid 2px white;
+  border-radius: 103% 50%;
+  text-align: center;
+  margin: 3rem auto;
+  width: 30%;
+}
+
+.react-photo-gallery--gallery {
+  margin: 10rem auto;
+  width: 50%;
+}
+
+.react-photo-gallery--gallery img {
+  height: 7rem;
+  width: auto;
+  &:hover {
+    transform: scale3d(1.5, 1.5, 1.5);
+    border: solid 2px aquamarine;
+    border-radius: 5%;
+  }
+}

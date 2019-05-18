@@ -6,11 +6,9 @@ const history = createBrowserHistory();
 
 const App = (props) => {
   return (
-    <div>
       <Router history={history}>
         <Route path='/' component={IndexPageContainer} />
       </Router>
-    </div>
   )
 }
 
