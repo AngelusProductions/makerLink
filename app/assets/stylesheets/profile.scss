@@ -1,0 +1,19 @@
+#profile-page-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+#profile-pic-wrapper {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#profile-pic {
+  margin-top: 3rem;
+  border-radius: 103% 50%;
+  min-height: 16rem;
+  max-height: 25rem;
+  width: auto;
+  box-shadow: 0.4rem 0.6rem 0.1rem 0.5rem aquamarine;
+}
