@@ -1,3 +1,5 @@
+$pink: #ff0d7b;
+
 #makersLinking {
   float: right;
   width: 4rem;
@@ -20,7 +22,6 @@
     transform: scale(1.1);
   }
 }
-
 @keyframes ensmallABit {
   from {
     transform: scale(1.1);
@@ -32,15 +33,16 @@
 
 #makerlink-title {
   font-family: 'Quicksand', sans-serif;
-  color: white;
-  background-color: #ff0d7b;
+  color: $pink;
+  background-color: white;
   padding: 1rem;
   font-size: 3rem;
-  border: solid 2px white;
+  border: solid 0.2rem white;
   border-radius: 103% 50%;
   text-align: center;
   margin: 3rem auto;
   width: 30%;
+  box-shadow: 0.4rem 0.6rem 0.1rem 0.5rem aquamarine;
 }
 
 .react-photo-gallery--gallery {
